@@ -18,7 +18,10 @@ RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selectio
 		zlib1g-dev \
 		libldap2-dev \
 		libssl-dev \
-		wget
+		wget \
+		curl \
+		python \
+		python-pip
 
 # See http://wiki.nginx.org/InstallOptions
 RUN mkdir /var/log/nginx \
@@ -53,6 +56,8 @@ RUN mkdir /var/log/nginx \
 	&& wget -O /tmp/dockerize.tar.gz https://github.com/jwilder/dockerize/releases/download/v0.2.0/dockerize-linux-amd64-v0.2.0.tar.gz \
 	&& tar -C /usr/local/bin -xzvf /tmp/dockerize.tar.gz \
 	&& rm -rf /tmp/dockerize.tar.gz
+
+RUN pip install awscli
 
 EXPOSE 80 443
 
